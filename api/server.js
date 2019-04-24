@@ -9,6 +9,9 @@ server.use(helmet());
 server.use(cors());
 server.use(express.json());
 
+server.get("/", (req, res) => {
+  res.status(200).send("Server is up and running");
+});
 // server.use("/api/users", usersRouter);
 
 module.exports = server;
