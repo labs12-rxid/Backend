@@ -5,7 +5,7 @@
 - [users](#usersTABLE)
 - [meds](#medsTABLE)
 - [diaries](#diariesTABLE)
-- [reminders](#remindersTABLE)
+- [rems](#remsTABLE)
 
 ## users <a name="usersTABLE"></a>
 
@@ -17,7 +17,7 @@
 | created_at | date      | required, auto-generated                     |
 | premium    | boolean   | required, default false (access to full app) |
 | email      | string    | optional, 64 chars                           |
-| phone      | string    | optional, 64 chars (used for all reminders)  |
+| phone      | integer   | optional, 32 chars (used for all reminders)  |
 | first_name | string    | optional, 64 chars                           |
 | last_name  | string    | optional, 64 chars                           |
 
@@ -30,14 +30,14 @@
 | med_name           | string    | required, 64 chars, source: user-entered or DS backend          |
 | med_active         | boolean   | required, default true (med currently taken)                    |
 | med_rx             | string    | optional, 64 chars (med Rx#)                                    |
-| med_pharm_phone    | string    | optional, 64 chars                                              |
+| med_pharm_phone    | integer   | optional, 32 chars                                              |
 | med_type           | string    | optional, 64 chars (tablet, cream, etc.)                        |
-| med_size           | integer   | optional, 64 chars (size of each pill)                          |
-| med_size_unit      | string    | optional, 64 chars (mg, etc.)                                   |
-| med_dose           | integer   | optional, 64 chars (prescribed dose per admin)                  |
-| med_dose_unit      | string    | optional, 64 chars (mg, tablet, etc.)                           |
-| med_dose_freq      | integer   | optional, 64 chars (# times per \_\_\_)                         |
-| med_dose_freq_unit | string    | optional, 64 chars (day, week, etc.)                            |
+| med_size           | integer   | optional, 16 chars (size of each pill)                          |
+| med_size_unit      | string    | optional, 32 chars (mg, etc.)                                   |
+| med_dose           | integer   | optional, 16 chars (prescribed dose per admin)                  |
+| med_dose_unit      | string    | optional, 32 chars (mg, tablet, etc.)                           |
+| med_dose_freq      | integer   | optional, 16 chars (# times per \_\_\_)                         |
+| med_dose_freq_unit | string    | optional, 32 chars (day, week, etc.)                            |
 | med_dir_1          | string    | optional, 64 chars (take with food, etc.)                       |
 | med_dir_2          | string    | optional, 64 chars                                              |
 | med_dir_3          | string    | optional, 64 chars                                              |
@@ -68,6 +68,6 @@
 | id        | integer   | required, PK, auto-increment                                   |
 | user_id   | integer   | required, FK of users PK, onDelete: cascade, onUpdate: cascade |
 | med_id    | integer   | required, FK of meds PK, onDelete: cascade, onUpdate: cascade  |
-| rem_type  | string    | required, ('admin' or 'diary')                                 |
+| rem_type  | string    | required, default 'admin' ('admin' or 'diary')                 |
 | rem_notes | string    | optional, 16 chars (user notes to appear in reminder)          |
-| rem\_...  | date      | (RESEARCH NEEDED)                                              |
+| rem\_...  | date      | fields needs for Twilio (RESEARCH NEEDED)                      |
