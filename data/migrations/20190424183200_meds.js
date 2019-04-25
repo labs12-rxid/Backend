@@ -17,8 +17,11 @@ exports.up = function(knex) {
     table.string('med_rx', 64);
     table.integer('med_pharm_phone', 32);
     table.string('med_type', 64);
-    table.integer('med_size', 16);
-    table.string('med_size_unit', 32);
+    table.string('med_admin_mode', 32);
+    table.string('med_color', 32);
+    table.string('med_shape', 32);
+    table.integer('med_strengh', 16);
+    table.string('med_strength_unit', 32);
     table.integer('med_dose', 16);
     table.string('med_dose_unit', 32);
     table.integer('med_dose_freq', 16);
@@ -28,8 +31,12 @@ exports.up = function(knex) {
     table.string('med_dir_3', 64);
     table.string('med_dir_4', 64);
     table.string('med_dir_5', 64);
+    table.date('med_admin_start_date');
+    table.date('med_admin_end_date');
     table.time('med_admin_time_1');
     table.boolean('med_diary_active').defaultTo(false);
+    table.date('med_diary_start_date');
+    table.date('med_diary_end_date');
     table.time('med_diary_time_1');
     table.string('med_ingr');
     table.string('med_side_eff');
