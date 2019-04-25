@@ -5,31 +5,33 @@ const localPgConnection = {
   password: "pass"
 };
 
-const dbConnection = process.env.DATABASE_URL || localPgConnection;
+const devDatabase = process.env.DATABASE_DEV || localPgConnection;
+const testDatabase = process.env.DATABASE_TEST || localPgConnection;
+const productionDatabase = process.env.DATABASE_URL || localPgConnection;
 
 module.exports = {
   development: {
-    client: "sqlite3",
-    connection: {
-      filename: "./data/rxid.sqlite3"
-    },
-    useNullAsDefault: true,
-    migrations: {
-      directory: "./data/migrations"
-    },
-    seeds: {
-      directory: "./data/seeds"
-    },
+    client: "pg",
+    connection: devDatabase + "?ssl=true",
     pool: {
-      afterCreate: (conn, done) => {
-        conn.run("PRAGMA foreign_keys = ON", done); // enforce FK
-      }
-    }
+      min: 2,
+      max: 10
+    },
+    useNullAsDefault: true,
+    migrations: {
+      directory: "./data/migrations"
+    },
+    seeds: {
+      directory: "./data/seeds"
+    },
   },
+
   testing: {
-    client: "sqlite3",
-    connection: {
-      filename: "./data/test.db3"
+    client: "pg",
+    connection: testDatabase + "?ssl=true",
+    pool: {
+      min: 2,
+      max: 10
     },
     useNullAsDefault: true,
     migrations: {
@@ -39,9 +41,10 @@ module.exports = {
       directory: "./data/seeds"
     }
   },
+
   production: {
     client: "pg",
-    connection: dbConnection + "?ssl=true",
+    connection: productionDatabase + "?ssl=true",
     pool: {
       min: 2,
       max: 10
