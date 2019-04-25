@@ -1,18 +1,17 @@
-const localPgConnection = {
-  host: "localhost",
-  database: "rxid",
-  user: "admin",
-  password: "pass"
-};
+require("dotenv").config();
 
-const devDatabase = process.env.DATABASE_DEV || localPgConnection;
-const testDatabase = process.env.DATABASE_TEST || localPgConnection;
-const productionDatabase = process.env.DATABASE_URL || localPgConnection;
+const testDatabase = process.env.DATABASE_TEST;
+const productionDatabase = process.env.DATABASE_URL;
 
 module.exports = {
   development: {
     client: "pg",
-    connection: devDatabase + "?ssl=true",
+    connection: {
+      host: process.env.DEV_HOSTNAME || "localhost",
+      database: process.env.DEV_DATABASE || "rxid",
+      user: process.env.DEV_USER || "admin",
+      password: process.env.DEV_PASSWORD || "pass"
+    },
     pool: {
       min: 2,
       max: 10
@@ -23,12 +22,12 @@ module.exports = {
     },
     seeds: {
       directory: "./data/seeds"
-    },
+    }
   },
 
   testing: {
     client: "pg",
-    connection: testDatabase + "?ssl=true",
+    connection: testDatabase,
     pool: {
       min: 2,
       max: 10
@@ -44,7 +43,7 @@ module.exports = {
 
   production: {
     client: "pg",
-    connection: productionDatabase + "?ssl=true",
+    connection: productionDatabase,
     pool: {
       min: 2,
       max: 10
