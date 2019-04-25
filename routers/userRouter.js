@@ -25,7 +25,7 @@ function generateUserToken(user) {
 
 // End of JWT generation code
 
-router.post("/register", (req, res) => {
+userRouter.post("/register", (req, res) => {
   let user = req.body;
 
   if (!user.username || !user.password) {
@@ -49,7 +49,7 @@ router.post("/register", (req, res) => {
     });
 });
 
-router.post("/login", (req, res) => {
+userRouter.post("/login", (req, res) => {
   let { username, password } = req.body;
 
   if (!username || !password) {
