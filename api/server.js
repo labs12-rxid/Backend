@@ -14,6 +14,6 @@ server.use(morgan("combined"));
 server.get("/", (req, res) => {
   res.status(200).send("Server is up and running");
 });
-// server.use("/api/users", usersRouter);
+server.use("/api/users", userRouter);
 
 module.exports = server;
