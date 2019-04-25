@@ -23,32 +23,39 @@
 
 ## meds <a name="medsTABLE"></a>
 
-| Field              | Data Type | Notes                                                           |
-| ------------------ | --------- | --------------------------------------------------------------- |
-| id                 | integer   | required, PK, auto-increment                                    |
-| user_id            | integer   | required, FK of users PK, onDelete: cascade, onUpdate: cascade  |
-| med_name           | string    | required, 64 chars, source: user-entered or DS backend          |
-| med_active         | boolean   | required, default true (med currently taken)                    |
-| med_rx             | string    | optional, 64 chars (med Rx#)                                    |
-| med_pharm_phone    | integer   | optional, 32 chars                                              |
-| med_type           | string    | optional, 64 chars (tablet, cream, etc.)                        |
-| med_size           | integer   | optional, 16 chars (size of each pill)                          |
-| med_size_unit      | string    | optional, 32 chars (mg, etc.)                                   |
-| med_dose           | integer   | optional, 16 chars (prescribed dose per admin)                  |
-| med_dose_unit      | string    | optional, 32 chars (mg, tablet, etc.)                           |
-| med_dose_freq      | integer   | optional, 16 chars (# times per \_\_\_)                         |
-| med_dose_freq_unit | string    | optional, 32 chars (day, week, etc.)                            |
-| med_dir_1          | string    | optional, 64 chars (take with food, etc.)                       |
-| med_dir_2          | string    | optional, 64 chars                                              |
-| med_dir_3          | string    | optional, 64 chars                                              |
-| med_dir_4          | string    | optional, 64 chars                                              |
-| med_dir_5          | string    | optional, 64 chars                                              |
-| med_admin_time_1   | time      | optional, (time of admin) (RESEARCH NEEDED)                     |
-| med_diary_active   | boolean   | optional, default false (user flag for diaries)                 |
-| med_diary_time_1   | time      | optional, (time of diary reminder) (RESEARCH NEEDED)            |
-| med_ingr           | string    | optional, comma-delimited, source: DS backend (RESEARCH NEEDED) |
-| med_side_eff       | string    | optional, comma-delimited, source: DS backend (RESEARCH NEEDED) |
-| med_notes          | string    | optional, 1024 chars (general user notes)                       |
+| Field                | Data Type | Notes                                                           |
+| -------------------- | --------- | --------------------------------------------------------------- |
+| id                   | integer   | required, PK, auto-increment                                    |
+| user_id              | integer   | required, FK of users PK, onDelete: cascade, onUpdate: cascade  |
+| med_name             | string    | required, 64 chars, source: user-entered or DS backend          |
+| med_active           | boolean   | required, default true (med currently taken)                    |
+| med_rx               | string    | optional, 64 chars (med Rx#)                                    |
+| med_pharm_phone      | integer   | optional, 32 chars                                              |
+| med_type             | string    | optional, 64 chars (tablet, cream, etc.)                        |
+| med_admin_mode       | string    | optional, 32 chars (oral, topical, etc.)                        |
+| med_color            | string    | optional, 32 chars                                              |
+| med_shape            | string    | optional, 32 chars                                              |
+| med_strength         | integer   | optional, 16 chars (strength of each pill)                      |
+| med_strength_unit    | string    | optional, 32 chars (mg, etc.)                                   |
+| med_dose             | integer   | optional, 16 chars (prescribed dose per admin)                  |
+| med_dose_unit        | string    | optional, 32 chars (mg, tablet, etc.)                           |
+| med_dose_freq        | integer   | optional, 16 chars (# times per \_\_\_)                         |
+| med_dose_freq_unit   | string    | optional, 32 chars (day, week, etc.)                            |
+| med_dir_1            | string    | optional, 64 chars (take with food, etc.)                       |
+| med_dir_2            | string    | optional, 64 chars                                              |
+| med_dir_3            | string    | optional, 64 chars                                              |
+| med_dir_4            | string    | optional, 64 chars                                              |
+| med_dir_5            | string    | optional, 64 chars                                              |
+| med_admin_start_date | date      | optional (RESEARCH NEEDED)                                      |
+| med_admin_end_date   | date      | optional (RESEARCH NEEDED)                                      |
+| med_admin_time_1     | time      | optional, (time of admin) (RESEARCH NEEDED)                     |
+| med_diary_active     | boolean   | optional, default false (user flag for diaries)                 |
+| med_diary_start_date | date      | optional (RESEARCH NEEDED)                                      |
+| med_diary_end_date   | date      | optional (RESEARCH NEEDED)                                      |
+| med_diary_time_1     | time      | optional, (time of diary reminder) (RESEARCH NEEDED)            |
+| med_ingr             | string    | optional, comma-delimited, source: DS backend (RESEARCH NEEDED) |
+| med_side_eff         | string    | optional, comma-delimited, source: DS backend (RESEARCH NEEDED) |
+| med_notes            | string    | optional, 1024 chars (general user notes)                       |
 
 ## diaries <a name="diariesTABLE"></a>
 
