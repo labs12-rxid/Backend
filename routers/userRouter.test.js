@@ -14,7 +14,7 @@ const testUser = {
   last_name: "Hernandez"
 } // Luis will help us out with testing! Won't you, Luis?
 
-beforeAll(async () => {
+beforeAll(() => {
   db('users').insert(testUser);
 }); // Makes sure at least one user is there to get.
 
@@ -32,16 +32,15 @@ describe("a functional test environment", () => {
 
 describe("userRouter", () => {
   it("should respond affirmatively to getting a user", async () => {
-    const response = await request(jokexpress).get('/1');
+    const response = await request(jokexpress).get('/1').set('Accept', 'application/json');
 
-    expect(response.status).toEqual(201);
-    expect(response.data).toBeTruthy();
+    expect(response.status).toBeGreaterThanOrEqual(200);
+    expect(response.status).toBeLessThan(300);
   });
 
   it("shouldn't be so confident when it gets a user that isn't there", async () => {
-    const response = await request(jokexpress).get('/0');
+    const response = await request(jokexpress).get('/0').set('Accept', 'application/json');
 
-    expect(response.data).toBeFalsy();
     expect(response.status).toEqual(404);
   });
 })
