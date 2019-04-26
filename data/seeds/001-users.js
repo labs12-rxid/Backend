@@ -25,7 +25,7 @@ exports.seed = function(knex, Promise) {
   // );
 
   const hashedFakeUsers = fakeUsers.map(user => {
-    user.password = bcrypt.hashSync(user.password, 8);
+    user.password = bcrypt.hashSync(user.password, 1);
     return user;
   });
 
