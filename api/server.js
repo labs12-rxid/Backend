@@ -3,6 +3,7 @@ const helmet = require("helmet");
 const cors = require("cors");
 const morgan = require("morgan");
 const usersRouter = require("../routers/userRouter.js");
+const medsRouter = require("../routers/medsRouter");
 
 const authRouter = require("../routers/authRouter");
 const server = express();
@@ -16,6 +17,7 @@ server.get("/", (req, res) => {
   res.status(200).send("Server is up and running");
 });
 
+server.use("/api/meds", medsRouter);
 server.use("/api/users", usersRouter);
 server.use("/api/auth", authRouter);
 
