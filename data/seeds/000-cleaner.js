@@ -1,8 +1,7 @@
 const cleaner = require("knex-cleaner");
 
 exports.seed = function(knex) {
-  const options = {
-    mode: "truncate" // Valid options 'truncate', 'delete'
-  };
-  return cleaner.clean(knex, options);
+  return knex.schema.raw(
+    "TRUNCATE users, meds, diaries, rems RESTART IDENTITY;"
+  ); // Bypasses PG strictness on FKs when conducting teardown.
 };
