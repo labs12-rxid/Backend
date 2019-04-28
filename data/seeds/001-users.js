@@ -8,7 +8,8 @@ const fakeUsers = require("../dummyData/fakeUsers.json")["users"];
 //   first_name: faker.name.firstName(),
 //   last_name: faker.name.lastName(),
 //   username: faker.internet.userName(),
-//   password: bcrypt.hashSync(faker.internet.password(), 8)
+//   password: faker.internet.password(),
+//   phone: faker.phone.phoneNumber()
 // });
 
 exports.seed = function(knex, Promise) {
@@ -23,5 +24,10 @@ exports.seed = function(knex, Promise) {
   //   JSON.stringify({ users: fakeUsers })
   // );
 
-  return knex("users").insert(fakeUsers);
+  const hashedFakeUsers = fakeUsers.map(user => {
+    user.password = bcrypt.hashSync(user.password, 1);
+    return user;
+  }); // hashSync lowered to run for testing purposes, so it can finish.
+
+  return knex("users").insert(hashedFakeUsers);
 };
