@@ -1,26 +1,26 @@
 const db = require("../dbConfig");
 
 module.exports = {
-  findMeds,
-  findMedById,
-  findMedBy,
+  find,
+  findById,
+  findBy,
   findUsersMeds,
-  addMed,
-  updateMed,
-  deleteMed
+  add,
+  update,
+  remove
 };
 
-function findMeds() {
+function find() {
   return db("meds");
 }
 
-function findMedById(id) {
+function findById(id) {
   return db("meds")
     .where({ id })
     .first();
 }
 
-function findMedBy(filter) {
+function findBy(filter) {
   return db("users")
     .where(filter)
     .first();
@@ -30,20 +30,20 @@ function findUsersMeds(id) {
   return db("meds").where({ user_id: id });
 }
 
-function addMed(med) {
+function add(med) {
   return db("meds")
     .insert(med)
     .returning("*");
 }
 
-function updateMed(id, updates) {
+function update(id, updates) {
   return db("meds")
     .where({ id })
     .update(updates)
     .returning("*");
 }
 
-function deleteMed(id) {
+function remove(id) {
   return db("meds")
     .where({ id })
     .del()
