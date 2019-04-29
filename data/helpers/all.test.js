@@ -11,18 +11,9 @@ const testUser = {
 } // Luis will help us out with testing! Won't you, Luis?
 
 
-beforeAll(() => {
+beforeAll(() => { // Please run test migrations first: npx knex migrate:latest --env testing
   return db.seed.run();
-}); // Please run test migrations first: npx knex migrate:latest --env testing
-
-// EMERGENCY FIX for "my test DB has been placed into an unrecoverable state by migration errors."
-// After uncommenting and letting Jest run it, you will have to rerun knex migrate:latest --env testing
-// 
-// afterAll(() => {
-//   return db.schema.raw(
-//     "DROP TABLE users, meds, diaries, rems;" 
-//   );
-// });
+}); // If your migrations are not working, consult 000-cleaner.js
 
 
 describe("a functional test environment", () => {
