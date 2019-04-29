@@ -20,7 +20,7 @@ exports.up = function(knex) {
     table.string('med_admin_mode', 32);
     table.string('med_color', 32);
     table.string('med_shape', 32);
-    table.integer('med_strengh', 16);
+    table.integer('med_strength', 16);
     table.string('med_strength_unit', 32);
     table.integer('med_dose', 16);
     table.string('med_dose_unit', 32);
