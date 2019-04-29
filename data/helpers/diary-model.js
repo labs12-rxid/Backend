@@ -4,47 +4,40 @@ module.exports = {
   find,
   findById,
   findBy,
-  findUsersMeds,
   add,
   update,
   remove
 };
 
 function find() {
-  return db('meds');
+  return db('diaries');
 }
 
 function findById(id) {
-  return db('meds')
+  return db('diaries')
     .where({ id })
     .first();
 }
 
 function findBy(filter) {
-  return db('users')
-    .where(filter)
-    .first();
+  return db('diaries').where(filter);
 }
 
-function findUsersMeds(id) {
-  return db('meds').where({ user_id: id });
-}
-
-function add(med) {
-  return db('meds')
-    .insert(med)
+function add(diary) {
+  return db('diaries')
+    .insert(diary)
     .returning('*');
 }
 
 function update(id, updates) {
-  return db('meds')
+  return db('diaries')
     .where({ id })
     .update(updates)
     .returning('*');
 }
 
 function remove(id) {
-  return db('meds')
+  return db('diaries')
     .where({ id })
     .del()
     .returning('*');
