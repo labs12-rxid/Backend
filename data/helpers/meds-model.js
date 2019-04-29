@@ -27,26 +27,25 @@ function findMedBy(filter) {
 }
 
 function findUsersMeds(id) {
-  return db("users")
-    .join("meds", "users.id", "meds.user_id")
-    .where({ "users.id": id });
+  return db("meds").where({ user_id: id });
 }
 
-async function addMed(med) {
-  const [id] = await db("meds")
+function addMed(med) {
+  return db("meds")
     .insert(med)
-    .returning("id");
-  return findById(id);
+    .returning("*");
 }
 
 function updateMed(id, updates) {
   return db("meds")
     .where({ id })
-    .update(updates);
+    .update(updates)
+    .returning("*");
 }
 
 function deleteMed(id) {
   return db("meds")
     .where({ id })
-    .del();
+    .del()
+    .returning("*");
 }
