@@ -26,27 +26,20 @@ exports.up = function(knex) {
     table.string('med_dose_unit', 32);
     table.integer('med_dose_freq', 16);
     table.string('med_dose_freq_unit', 32);
-    table.string('med_dir_1', 64);
-    table.string('med_dir_2', 64);
-    table.string('med_dir_3', 64);
-    table.string('med_dir_4', 64);
-    table.string('med_dir_5', 64);
+    table.jsonb('med_directions');
     table.date('med_admin_start_date');
     table.date('med_admin_end_date');
-    table.time('med_admin_time_1');
+    table.jsonb('med_admin_times');
     table.boolean('med_diary_active').defaultTo(false);
     table.date('med_diary_start_date');
     table.date('med_diary_end_date');
-    table.time('med_diary_time_1');
-    table.string('med_ingr');
-    table.string('med_side_eff');
+    table.jsonb('med_diary_times');
+    table.string('med_ingredients');
+    table.string('med_side_effects');
     table.string('med_notes', 1024);
   });
 };
 
 exports.down = function(knex) {
-  return knex.schema.raw(
-    "DROP TABLE IF EXISTS meds CASCADE"
-  );
+  return knex.schema.raw('DROP TABLE IF EXISTS meds CASCADE');
 };
-
