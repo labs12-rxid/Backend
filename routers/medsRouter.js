@@ -1,6 +1,7 @@
 const medsRouter = require('express').Router();
 
 const Meds = require('../data/helpers/meds-model');
+const Diary = require('../data/helpers/diary-model');
 
 medsRouter.get('/', async (req, res) => {
   try {
@@ -22,10 +23,28 @@ medsRouter.get('/:id', async (req, res) => {
     } else {
       res
         .status(404)
-        .json({ message: 'Medidcation with specified ID does not exist.' });
+        .json({ message: 'Medication with specified ID does not exist.' });
     }
   } catch (error) {
     res.status(500).json({ message: `Medication request failed ${error}.` });
+  }
+});
+
+medsRouter.get('/:id/diaries', async (req, res) => {
+  const { id } = req.params;
+  try {
+    const diaries = await Diary.findBy({ med_id: id });
+    if (diaries) {
+      res.status(200).json(diaries);
+    } else {
+      res
+        .status(404)
+        .json({ message: 'Medication with specified ID does not exist.' });
+    }
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: `Medication diaries request failed ${error}.` });
   }
 });
 
