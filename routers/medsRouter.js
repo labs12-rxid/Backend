@@ -1,17 +1,19 @@
-const medsRouter = require("express").Router();
+const medsRouter = require('express').Router();
 
-const Meds = require("../data/helpers/meds-model");
+const Meds = require('../data/helpers/meds-model');
 
-medsRouter.get("/", async (req, res) => {
+medsRouter.get('/', async (req, res) => {
   try {
     const meds = await Meds.find();
     res.status(200).json(meds);
   } catch (error) {
-    res.status(500).json(error);
+    res
+      .status(500)
+      .json({ message: `Medications could not be found ${error}.` });
   }
 });
 
-medsRouter.get("/:id", async (req, res) => {
+medsRouter.get('/:id', async (req, res) => {
   const { id } = req.params;
   try {
     const med = await Meds.findById(id);
@@ -20,18 +22,18 @@ medsRouter.get("/:id", async (req, res) => {
     } else {
       res
         .status(404)
-        .json({ message: "Med with specified ID does not exist." });
+        .json({ message: 'Medidcation with specified ID does not exist.' });
     }
   } catch (error) {
-    res.status(500).json(error);
+    res.status(500).json({ message: `Medication request failed ${error}.` });
   }
 });
 
-medsRouter.post("/", async (req, res) => {
+medsRouter.post('/', async (req, res) => {
   const { user_id } = req.body;
   if (!user_id) {
     // We can add other necessary fields later.
-    res.status(401).json({ message: "No user ID submitted." });
+    res.status(401).json({ message: 'No user ID submitted.' });
   } else {
     try {
       const newMed = await Meds.add(req.body);
@@ -46,7 +48,7 @@ medsRouter.post("/", async (req, res) => {
   }
 });
 
-medsRouter.delete("/:id", async (req, res) => {
+medsRouter.delete('/:id', async (req, res) => {
   const { id } = req.params;
   try {
     const med = await Meds.remove(id);
@@ -54,7 +56,7 @@ medsRouter.delete("/:id", async (req, res) => {
       res.status(200).json(med);
     } else {
       res.status(404).json({
-        message: "The medication with the specified ID does not exist."
+        message: 'The medication with the specified ID does not exist.'
       });
     }
   } catch (error) {
@@ -64,7 +66,7 @@ medsRouter.delete("/:id", async (req, res) => {
   }
 });
 
-medsRouter.put("/:id", async (req, res) => {
+medsRouter.put('/:id', async (req, res) => {
   const { id } = req.params;
   const med = req.body;
   try {
@@ -73,7 +75,7 @@ medsRouter.put("/:id", async (req, res) => {
       res.status(200).json(editedMed);
     } else {
       res.status(404).json({
-        message: "The medication with the specified ID does not exist."
+        message: 'The medication with the specified ID does not exist.'
       });
     }
   } catch (error) {
