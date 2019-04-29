@@ -49,15 +49,13 @@ medsRouter.post("/", async (req, res) => {
 medsRouter.delete("/:id", async (req, res) => {
   const { id } = req.params;
   try {
-    const review = await Meds.remove(id);
-    if (review) {
-      res.status(200).json(review);
+    const med = await Meds.remove(id);
+    if (med) {
+      res.status(200).json(med);
     } else {
-      res
-        .status(404)
-        .json({
-          message: "The medication with the specified ID does not exist."
-        });
+      res.status(404).json({
+        message: "The medication with the specified ID does not exist."
+      });
     }
   } catch (error) {
     res.status(500).json({
