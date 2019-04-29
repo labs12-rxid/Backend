@@ -45,5 +45,8 @@ exports.up = function(knex) {
 };
 
 exports.down = function(knex) {
-  return knex.schema.dropTableIfExists('meds');
+  return knex.schema.raw(
+    "DROP TABLE IF EXISTS meds CASCADE"
+  );
 };
+
