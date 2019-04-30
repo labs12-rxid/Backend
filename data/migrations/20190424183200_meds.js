@@ -15,7 +15,7 @@ exports.up = function(knex) {
       .notNullable()
       .defaultTo(true);
     table.string('med_rx', 64);
-    table.integer('med_pharm_phone', 32);
+    table.string('med_pharm_phone', 32);
     table.string('med_type', 64);
     table.string('med_admin_mode', 32);
     table.string('med_color', 32);
@@ -34,7 +34,7 @@ exports.up = function(knex) {
     table.date('med_diary_start_date');
     table.date('med_diary_end_date');
     table.jsonb('med_diary_times');
-    table.string('med_ingredients');
+    table.string('med_ingredients', 1024);
     table.string('med_side_effects');
     table.string('med_notes', 1024);
   });
