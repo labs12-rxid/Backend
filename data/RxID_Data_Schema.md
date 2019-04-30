@@ -17,7 +17,7 @@
 | created_at | date      | required, auto-generated                     |
 | premium    | boolean   | required, default false (access to full app) |
 | email      | string    | optional, 64 chars                           |
-| phone      | integer   | optional, 32 chars (used for all reminders)  |
+| phone      | string    | optional, 32 chars (used for all reminders)  |
 | first_name | string    | optional, 64 chars                           |
 | last_name  | string    | optional, 64 chars                           |
 
@@ -30,7 +30,7 @@
 | med_name             | string    | required, 64 chars, source: user-entered or DS backend                                        |
 | med_active           | boolean   | required, default true (med currently taken)                                                  |
 | med_rx               | string    | optional, 64 chars (med Rx#)                                                                  |
-| med_pharm_phone      | integer   | optional, 32 chars                                                                            |
+| med_pharm_phone      | string    | optional, 32 chars                                                                            |
 | med_type             | string    | optional, 64 chars (tablet, cream, etc.)                                                      |
 | med_admin_mode       | string    | optional, 32 chars (oral, topical, etc.)                                                      |
 | med_color            | string    | optional, 32 chars                                                                            |
