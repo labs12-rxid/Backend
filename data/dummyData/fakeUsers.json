@@ -3999,6 +3999,54 @@
       "username": "Vladimir.Gibson8",
       "password": "HP5rwXg7ZhOIZUj",
       "phone": "863-992-9362 x039"
+    },
+    {
+      "username": "user",
+      "password": "password",
+      "email": "username@gmail.com",
+      "phone": "993-939-2289",
+      "first_name": "User",
+      "last_name": "Name"
+    },
+    {
+      "username": "victorgoico",
+      "password": "password",
+      "email": "victorg@email.com",
+      "phone": "399-292-9292",
+      "first_name": "Victor",
+      "last_name": "Goico"
+    },
+    {
+      "username": "jubilee",
+      "password": "password",
+      "email": "jubilee@email.com",
+      "phone": "398-282-3838",
+      "first_name": "Jubilee",
+      "last_name": "Young"
+    },
+    {
+      "username": "chance",
+      "password": "password",
+      "email": "chance@email.com",
+      "phone": "322-929-2188",
+      "first_name": "Chance",
+      "last_name": "Farquhar"
+    },
+    {
+      "username": "christopher",
+      "password": "password",
+      "email": "chris@email.com",
+      "phone": "398-281-2727",
+      "first_name": "Christopher",
+      "last_name": "Foster"
+    },
+    {
+      "username": "jacob",
+      "password": "password",
+      "email": "jacob@email.com",
+      "phone": "393-282-5530",
+      "first_name": "Jacob",
+      "last_name": "Angulo"
     }
   ]
 }

@@ -14,14 +14,16 @@ function find() {
   return db('meds');
 }
 
-function findById(id) {
-  return db('meds')
+async function findById(id) {
+  const med = await db('meds')
     .where({ id })
     .first();
+  med.diaries = await db('diaries').where({ med_id: id });
+  return med;
 }
 
 function findBy(filter) {
-  return db('users')
+  return db('meds')
     .where(filter)
     .first();
 }
