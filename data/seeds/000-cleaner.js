@@ -1,5 +1,3 @@
-const cleaner = require('knex-cleaner');
-
 exports.seed = function(knex) {
   // return knex.schema.raw('DROP TABLE users, meds, diaries, rems;'); // Uncomment this to drop all tables instead on seed.run();
   return knex.schema.raw(
