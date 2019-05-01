@@ -41,7 +41,7 @@ userRouter.get('/:id/meds', async (req, res) => {
 userRouter.get('/:id/diaries', async (req, res) => {
   const { id } = req.params;
   try {
-    const diaries = await Diary.findBy({ user_id: id });
+    const diaries = await Diary.findBy(id);
     if (diaries) {
       res.status(200).json(diaries);
     } else {
