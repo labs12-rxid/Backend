@@ -24,7 +24,5 @@ exports.up = function(knex) {
 };
 
 exports.down = function(knex) {
-  return knex.schema.raw(
-    "DROP TABLE IF EXISTS diaries CASCADE"
-  );
+  return knex.schema.raw('DROP TABLE IF EXISTS diaries CASCADE');
 };

@@ -1,13 +1,16 @@
+<!-- prettier-ignore-start -->
 # Environment Secrets Used To Launch Server
 
 ## Miscellaneous
 
 ### PORT
+
 Sets the launch port of the application, used in index.js
 
 ## Database
 
 ### DB_ENV
+
 Sets the knex configuration object used from knexfile.js. Specified in dbConfig.js
 
 ### DB_DEV_, DB_TEST_, DB_PROD_
@@ -25,4 +28,6 @@ The triplicate specification is to guarantee a database is connected to in case 
 Overspecifying like this is sometimes considered "bad" programming but this defends from accidents.
 
 ### dbConfig.js
+
 DB_ENV sets environment used from knexfile.js.
+<!-- prettier-ignore-end -->
