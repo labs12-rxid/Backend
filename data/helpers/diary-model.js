@@ -19,8 +19,11 @@ function findById(id) {
     .first();
 }
 
-function findBy(filter) {
-  return db('diaries').where(filter);
+function findBy(user_id) {
+  return db('diaries')
+    .leftJoin('meds', 'meds.id', 'med_id')
+    .select('diaries.id', 'med_name', 'diary_date', 'diary_emoji', 'diary_text')
+    .where({ 'diaries.user_id': user_id });
 }
 
 function add(diary) {
