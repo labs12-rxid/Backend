@@ -1,0 +1,25 @@
+version: 0.2
+
+env:
+  variables:
+    # enables continuous integration settings where applicable
+    CI: true
+
+phases:
+  install:
+    commands:
+      # runs package install from yarn
+      - npx yarn install
+  pre_build:
+    commands:
+      #- npm run test
+  build:
+    commands:
+      #- npm run build
+  post_build:
+    commands:
+      # handles a conflict between npm and yarn, must find more elegant solution
+      - rm -rf ./node_modules
+artifacts:
+  files:
+    - '**/*'

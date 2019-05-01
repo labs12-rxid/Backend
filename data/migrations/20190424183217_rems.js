@@ -26,7 +26,5 @@ exports.up = function(knex) {
 };
 
 exports.down = function(knex) {
-  return knex.schema.raw(
-    'DROP TABLE IF EXISTS rems CASCADE'
-  );
+  return knex.schema.raw('DROP TABLE IF EXISTS rems CASCADE');
 };
