@@ -19,20 +19,6 @@ function findById(id) {
     .first();
 }
 
-const getUserValues = async user_id => {
-  return await db('user-values')
-    .leftJoin('default-values', 'default-values.id', 'default_value_id')
-    .leftJoin('created-values', 'created-values.id', 'created_value_id')
-    .select(
-      'user-values.id as id',
-      'created_value_name',
-      'default_value_name',
-      'value_rank',
-      'value_importance'
-    )
-    .where({ 'user-values.user_id': user_id });
-};
-
 function findBy(user_id) {
   return db('diaries')
     .leftJoin('meds', 'meds.id', 'med_id')
