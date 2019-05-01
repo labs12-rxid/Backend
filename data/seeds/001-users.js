@@ -1,7 +1,7 @@
-const fs = require("fs");
-const faker = require("faker");
-const bcrypt = require("bcryptjs");
-const fakeUsers = require("../dummyData/fakeUsers.json")["users"];
+const fs = require('fs');
+const faker = require('faker');
+const bcrypt = require('bcryptjs');
+const fakeUsers = require('../dummyData/fakeUsers.json')['users'];
 
 // const createFakeUser = () => ({
 //   email: faker.internet.email(),
@@ -29,5 +29,5 @@ exports.seed = function(knex, Promise) {
     return user;
   }); // hashSync lowered to run for testing purposes, so it can finish.
 
-  return knex("users").insert(hashedFakeUsers);
+  return knex('users').insert(hashedFakeUsers);
 };
