@@ -1,7 +1,8 @@
 const authRouter = require('express').Router();
-const Users = require('../data/helpers/users-model');
+const Users = require('../data/helpers/users-model.js');
+const authorization = require('./authorization.js');
 
-authRouter.post('/login', async (req, res) => {
+authRouter.post('/login', authorization, async (req, res) => {
   const auth_id = req.headers.decoded.sub;
   try {
     const user = await Users.findBy({ auth_id });

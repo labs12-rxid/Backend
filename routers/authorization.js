@@ -20,7 +20,7 @@ module.exports = (req, res, next) => {
   }
   jwt.verify(token, getKey, options, (error, decoded) => {
     if (error) {
-      res.status(400).json({ message: 'Invalid response' });
+      res.status(400).json({ message: 'Invalid token.' });
     } else {
       req.headers.decoded = decoded;
       next();
