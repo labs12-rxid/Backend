@@ -25,22 +25,26 @@ function findBy(filter) {
     .first();
 }
 
-function add(user) {
-  return db('users')
+async function add(user) {
+  const newUser = await db('users')
     .insert(user)
     .returning('*');
+  return newUser['0'];
+  // postgreSQL returns the object inside of an object. This will return the user object that we want.
 }
 
-function update(id, updates) {
-  return db('users')
+async function update(id, updates) {
+  const [user] = await db('users')
     .where({ id })
     .update(updates)
     .returning('*');
+  return user;
 }
 
-function remove(id) {
-  return db('users')
+async function remove(id) {
+  const [user] = db('users')
     .where({ id })
     .del()
     .returning('*');
+  return user;
 }
