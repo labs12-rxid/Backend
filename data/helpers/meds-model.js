@@ -32,22 +32,26 @@ function findUsersMeds(id) {
   return db('meds').where({ user_id: id });
 }
 
-function add(med) {
-  return db('meds')
+async function add(med) {
+  const newMed = await db('meds')
     .insert(med)
     .returning('*');
+  return newMed['0'];
+  // postgreSQL returns the object inside of an object. This will return the med object that we want.
 }
 
-function update(id, updates) {
-  return db('meds')
+async function update(id, updates) {
+  const [med] = await db('meds')
     .where({ id })
     .update(updates)
     .returning('*');
+  return med;
 }
 
-function remove(id) {
-  return db('meds')
+async function remove(id) {
+  const [med] = await db('meds')
     .where({ id })
     .del()
     .returning('*');
+  return med;
 }
