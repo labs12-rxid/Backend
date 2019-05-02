@@ -10,7 +10,8 @@ authRouter.post('/login', authorization, async (req, res) => {
       res.status(200).json({ ...user, loggedIn: true, newUser: false });
     } else {
       const newUser = await Users.add({ auth_id });
-      newUser && res.status(201).json({ loggedIn: true, newUser: true });
+      newUser &&
+        res.status(201).json({ ...newUser, loggedIn: true, newUser: true });
     }
   } catch (error) {
     res.status(500).json({ message: `Error retrieving user ${error}.` });
