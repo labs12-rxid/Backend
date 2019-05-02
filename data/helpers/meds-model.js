@@ -37,7 +37,7 @@ async function add(med) {
     .insert(med)
     .returning('*');
   return newMed['0'];
-   // postgreSQL returns the object inside of an object. This will return the med object that we want.
+  // postgreSQL returns the object inside of an object. This will return the med object that we want.
 }
 
 async function update(id, updates) {
@@ -48,10 +48,10 @@ async function update(id, updates) {
   return med;
 }
 
-function remove(id) {
+async function remove(id) {
   const [med] = await db('meds')
     .where({ id })
     .del()
     .returning('*');
-  return med
+  return med;
 }
