@@ -24,7 +24,7 @@ userRouter.get('/:id/meds', async (req, res) => {
   const { id } = req.params;
   try {
     const meds = await Meds.findUsersMeds(id);
-    if (meds) {
+    if (meds.length > 0) {
       res.status(200).json(meds);
     } else {
       res.status(404).json({
@@ -42,7 +42,7 @@ userRouter.get('/:id/diaries', async (req, res) => {
   const { id } = req.params;
   try {
     const diaries = await Diary.findBy(id);
-    if (diaries) {
+    if (diaries.length > 0) {
       res.status(200).json(diaries);
     } else {
       res

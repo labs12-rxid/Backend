@@ -18,7 +18,9 @@ async function findById(id) {
   const med = await db('meds')
     .where({ id })
     .first();
-  med.diaries = await db('diaries').where({ med_id: id });
+  if (med) {
+    med.diaries = await db('diaries').where({ med_id: id });
+  }
   return med;
 }
 
