@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "repository": "https://github.com/labs12-rxid/Backend.git",
-  "author": "VictorGoic0 <vgoico000@citymail.cuny.edu>",
+  "author": "Labs 12 RxID Project",
   "license": "MIT",
   "scripts": {
     "test": "cross-env DB_ENV=testing jest",
@@ -11,7 +11,6 @@
     "server": "nodemon index.js"
   },
   "dependencies": {
-    "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^7.0.0",
     "express": "^4.16.4",
