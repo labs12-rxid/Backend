@@ -1,6 +1,5 @@
 const fs = require('fs');
 const faker = require('faker');
-const bcrypt = require('bcryptjs');
 const fakeUsers = require('../dummyData/fakeUsers.json')['users'];
 
 // const createFakeUser = () => ({
@@ -25,7 +24,6 @@ exports.seed = function(knex, Promise) {
   // );
 
   const hashedFakeUsers = fakeUsers.map(user => {
-    user.password = bcrypt.hashSync(user.password, 1);
     return user;
   }); // hashSync lowered to run for testing purposes, so it can finish.
 
