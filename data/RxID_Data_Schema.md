@@ -72,5 +72,5 @@
 | user_id   | integer   | required, FK of users PK, onDelete: cascade, onUpdate: cascade |
 | med_id    | integer   | required, FK of meds PK, onDelete: cascade, onUpdate: cascade  |
 | rem_type  | string    | required, default 'admin' ('admin' or 'diary' or 'refill')     |
+| rem_date  | date      | required, UTC date code                                        |
 | rem_notes | string    | optional, 16 chars (user notes to appear in reminder)          |
-| rem\_...  | date      | fields needs for Twilio (RESEARCH NEEDED)                      |
