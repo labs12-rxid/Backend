@@ -22,7 +22,14 @@ function findById(id) {
 function findBy(user_id) {
   return db('diaries')
     .leftJoin('meds', 'meds.id', 'med_id')
-    .select('diaries.id', 'med_name', 'diary_date', 'diary_emoji', 'diary_text')
+    .select(
+      'diaries.id as id',
+      'meds.id as med_id',
+      'med_name',
+      'diary_date',
+      'diary_emoji',
+      'diary_text'
+    )
     .where({ 'diaries.user_id': user_id });
 }
 
