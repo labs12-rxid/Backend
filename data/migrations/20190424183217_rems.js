@@ -21,8 +21,8 @@ exports.up = function(knex) {
       .string('rem_type')
       .notNullable()
       .defaultTo('admin');
-    table.date('rem_date');
     table.string('rem_notes', 16);
+    table.date('rem_date');
   });
 };
 
