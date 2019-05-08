@@ -3,8 +3,9 @@ const multer = require('multer');
 
 const path = require('path'); 
 // Node directory-path resolving function
-const uploadTo = path.join(__dirname, '..', 'uploads'); 
+const uploadTo = process.env.UPLOAD_PATH || path.join(__dirname, '..', 'uploads'); 
 // Places files in Backend uploads/ folder for now.
+console.log(uploadTo); // You can run this via: node ./api/upload.js
 
 const upload = multer({ dest: `${uploadTo}` });
 // Activates multer as a function.
