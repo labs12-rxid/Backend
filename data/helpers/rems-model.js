@@ -51,7 +51,9 @@ async function add(rems) {
       'med_strength',
       'med_strength_unit',
       'med_directions',
-      'med_ingredients'
+      'med_ingredients',
+      'med_color',
+      'med_shape'
     )
     .join('meds', 'meds.id', 'rems.med_id')
     .where({ med_id });
