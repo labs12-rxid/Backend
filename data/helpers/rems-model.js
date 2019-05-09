@@ -33,8 +33,26 @@ async function add(rems) {
   const [med_id] = await db('rems')
     .insert(rems)
     .returning('med_id');
+  console.log(med_id);
   return await db('rems')
-    .select('*')
+    .select(
+      'rems.id as id',
+      'rems.rem_date',
+      'rems.med_id',
+      'rems.user_id',
+      'rem_notes',
+      'med_name',
+      'med_active',
+      'med_rx',
+      'med_pharm_phone',
+      'med_type',
+      'med_dose',
+      'med_dose_unit',
+      'med_strength',
+      'med_strength_unit',
+      'med_directions',
+      'med_ingredients'
+    )
     .join('meds', 'meds.id', 'rems.med_id')
     .where({ med_id });
 }
