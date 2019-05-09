@@ -42,11 +42,23 @@ async function add(diary) {
 }
 
 async function update(id, updates) {
-  const [diary] = await db('diaries')
+  await db('diaries')
     .where({ id })
-    .update(updates)
-    .returning('*');
-  return diary;
+    .update(updates);
+
+  const editedEntry = await db('diaries')
+    .leftJoin('meds', 'meds.id', 'med_id')
+    .select(
+      'diaries.id as id',
+      'meds.id as med_id',
+      'med_name',
+      'diary_date',
+      'diary_emoji',
+      'diary_text'
+    )
+    .where({ 'diaries.id': id });
+
+  return editedEntry[0];
 }
 
 async function remove(id) {
