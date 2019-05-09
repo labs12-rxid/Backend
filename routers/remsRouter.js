@@ -28,7 +28,7 @@ remsRouter.get('/:id', async (req, res) => {
 });
 
 remsRouter.post('/', async (req, res) => {
-  const { user_id, med_id } = req.body;
+  const { user_id, med_id } = req.body[0];
   if (!user_id || !med_id) {
     // We can add other necessary fields later.
     res.status(401).json({ message: 'No user ID or medication ID submitted.' });
