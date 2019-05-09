@@ -20,10 +20,11 @@ async function findById(id) {
   return rem;
 }
 
-function findBy(filter) {
+function findBy(user_id) {
   return db('rems')
-    .where(filter)
-    .first();
+    .join('meds', 'meds.id', 'rems.med_id')
+    .select('*')
+    .where({ 'rems.user_id': user_id });
 }
 
 async function add(rem) {
