@@ -14,12 +14,14 @@ const uploadRouter = require('../routers/uploadRouter');
 
 const server = express();
 
-
-
 server.use(helmet());
 server.use(cors());
 server.use(express.json());
 server.use(morgan('combined'));
+
+server.get('/api', (req, res) => {
+  res.status(200).send('Server is up and running');
+});
 
 server.get('/', (req, res) => {
   res.status(200).send('Server is up and running');

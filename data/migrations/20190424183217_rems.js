@@ -22,6 +22,7 @@ exports.up = function(knex) {
       .notNullable()
       .defaultTo('admin');
     table.string('rem_notes', 16);
+    table.date('rem_date');
   });
 };
 
