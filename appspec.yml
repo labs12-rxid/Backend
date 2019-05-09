@@ -7,7 +7,7 @@ hooks:
   ApplicationStop:
     - location: bash/save.sh
       timeout: 60
-      runas: ubuntu
+      runas: root
 # During the BeforeInstall deployment lifecycle event, run the commands 
 #   in the script specified in "location".
   # BeforeInstall:
@@ -19,12 +19,12 @@ hooks:
   AfterInstall:
     - location: bash/install.sh
       timeout: 60
-      runas: ubuntu
+      runas: root
 # During the ApplicationStart deployment lifecycle event, run the commands 
 #   in the script specified in "location".
   ApplicationStart:
     - location: bash/start.sh
       timeout: 60
-      runas: ubuntu
+      runas: root
 # During the ValidateService deployment lifecycle event, run the commands 
 #   in the script specified in "location".
