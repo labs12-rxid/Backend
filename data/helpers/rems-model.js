@@ -15,6 +15,8 @@ function find() {
 
 async function findById(id) {
   const rem = await db('rems')
+    .join('meds', 'meds.id', 'rems.med_id')
+    .select('*')
     .where({ id })
     .first();
   return rem;
