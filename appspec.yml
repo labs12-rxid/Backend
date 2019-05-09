@@ -5,8 +5,8 @@ files:
     destination: /srv/www/express/
 hooks:
   ApplicationStop:
-    - location: ./bash/save.sh
-      timeout: 300
+    - location: bash/save.sh
+      timeout: 60
       runas: root
 # During the BeforeInstall deployment lifecycle event, run the commands 
 #   in the script specified in "location".
@@ -17,14 +17,14 @@ hooks:
 # During the AfterInstall deployment lifecycle event, run the commands 
 #   in the script specified in "location".
   AfterInstall:
-    - location: ./bash/install.sh
-      timeout: 300
+    - location: bash/install.sh
+      timeout: 60
       runas: root
 # During the ApplicationStart deployment lifecycle event, run the commands 
 #   in the script specified in "location".
   ApplicationStart:
-    - location: ./bash/start.sh
-      timeout: 300
+    - location: bash/start.sh
+      timeout: 60
       runas: root
 # During the ValidateService deployment lifecycle event, run the commands 
 #   in the script specified in "location".
