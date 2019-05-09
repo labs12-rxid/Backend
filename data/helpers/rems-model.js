@@ -15,8 +15,8 @@ function find() {
 
 async function findById(id) {
   const rem = await db('rems')
-    .join('meds', 'meds.id', 'rems.med_id')
     .select('*')
+    .join('meds', 'meds.id', 'rems.med_id')
     .where({ id })
     .first();
   return rem;
@@ -24,17 +24,19 @@ async function findById(id) {
 
 function findBy(user_id) {
   return db('rems')
-    .join('meds', 'meds.id', 'rems.med_id')
     .select('*')
+    .join('meds', 'meds.id', 'rems.med_id')
     .where({ 'rems.user_id': user_id });
 }
 
-async function add(rem) {
-  const newRem = await db('rems')
-    .insert(rem)
-    .returning('*');
-  return newRem['0'];
-  // postgreSQL returns the object inside of an object. This will return the rem object that we want.
+async function add(rems) {
+  const [med_id] = await db('rems')
+    .insert(rems)
+    .returning('med_id');
+  return await db('rems')
+    .select('*')
+    .join('meds', 'meds.id', 'rems.med_id')
+    .where({ med_id });
 }
 
 async function update(id, updates) {
