@@ -27,6 +27,10 @@ DB_TEST_(et cetera) and DB_PROD_(et cetera) variables work identically to DB_DEV
 The triplicate specification is to guarantee a database is connected to in case of a logical error.
 Overspecifying like this is sometimes considered "bad" programming but this defends from accidents.
 
+##JWKSURI
+
+For BE Auth0 process.
+
 ### dbConfig.js
 
 DB_ENV sets environment used from knexfile.js.
