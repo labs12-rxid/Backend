@@ -8,9 +8,9 @@ authRouter.post('/login', authorization, async (req, res) => {
   const auth_id = req.headers.decoded.sub;
   try {
     const user = await Users.findBy({ auth_id });
-    const meds = await Meds.findUsersMeds(user.id);
-    const diary = await Diary.findBy(user.id);
     if (user) {
+      const meds = await Meds.findUsersMeds(user.id);
+      const diary = await Diary.findBy(user.id);
       res
         .status(200)
         .json({ ...user, meds, diary, loggedIn: true, newUser: false });
