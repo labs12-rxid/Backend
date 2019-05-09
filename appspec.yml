@@ -3,6 +3,10 @@ os: linux
 files:
   - source: /
     destination: /srv/www/express/
+permissions:
+  - object: /srv/www/pyapp
+    owner: ubuntu
+    mode: "0755"
 hooks:
   ApplicationStop:
     - location: bash/save.sh
