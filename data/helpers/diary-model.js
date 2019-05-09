@@ -57,6 +57,7 @@ async function update(id, updates) {
       'diary_text'
     )
     .where({ 'diaries.id': id });
+
   return editedEntry[0];
 }
 
