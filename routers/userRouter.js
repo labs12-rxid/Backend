@@ -3,7 +3,7 @@ const userRouter = require('express').Router();
 const Users = require('../data/helpers/users-model');
 const Meds = require('../data/helpers/meds-model');
 const Diary = require('../data/helpers/diary-model');
-const Rems = reqire('../data/helpers/rems-model');
+const Rems = require('../data/helpers/rems-model');
 
 userRouter.get('/:id', async (req, res) => {
   const { id } = req.params;
