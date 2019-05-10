@@ -20,6 +20,9 @@ exports.seed = function(knex, Promise) {
   //   './data/dummyData/fakeDiaries.json',
   //   JSON.stringify({ diaries: fakeDiaries })
   // );
-
-  return knex('diaries').insert(fakeDiaries);
+  const fakeDiariesDates = fakeDiaries.map(diary => {
+    diary.diary_date = new Date(diary.diary_date).valueOf();
+    return diary;
+  });
+  return knex('diaries').insert(fakeDiariesDates);
 };
