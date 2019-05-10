@@ -34,10 +34,21 @@ function findBy(user_id) {
 }
 
 async function add(diary) {
-  const newDiary = await db('diaries')
+  let newDiary = await db('diaries')
     .insert(diary)
     .returning('*');
-  return newDiary['0'];
+  newDiary = await db('diaries')
+    .leftJoin('meds', 'meds.id', 'med_id')
+    .select(
+      'diaries.id as id',
+      'meds.id as med_id',
+      'med_name',
+      'diary_date',
+      'diary_emoji',
+      'diary_text'
+    )
+    .where({ 'diaries.id': newDiary[0].id });
+  return newDiary[0];
   // postgreSQL returns the object inside of an object. This will return the diary object that we want.
 }
 

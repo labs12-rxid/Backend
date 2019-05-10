@@ -17,7 +17,7 @@ exports.up = function(knex) {
       .inTable('meds')
       .onDelete('CASCADE')
       .onUpdate('CASCADE');
-    table.date('diary_date').defaultTo(knex.fn.now());
+    table.float('diary_date', 50);
     table.string('diary_emoji', 16);
     table.string('diary_text', 1024);
   });
