@@ -37,7 +37,6 @@ async function add(diary) {
   let newDiary = await db('diaries')
     .insert(diary)
     .returning('*');
-  // return newDiary['0'];
   newDiary = await db('diaries')
     .leftJoin('meds', 'meds.id', 'med_id')
     .select(
