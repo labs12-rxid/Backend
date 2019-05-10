@@ -16,13 +16,13 @@ exports.seed = function(knex, Promise) {
   //   fakeDiaries.push(createFakeDiary());
   // }
 
+  // const fakeDiariesDates = fakeDiaries.map(diary => {
+  //   diary.diary_date = new Date(diary.diary_date).valueOf();
+  //   return diary;
+  // });
   // fs.writeFileSync(
   //   './data/dummyData/fakeDiaries.json',
-  //   JSON.stringify({ diaries: fakeDiaries })
+  //   JSON.stringify({ diaries: fakeDiariesDates })
   // );
-  const fakeDiariesDates = fakeDiaries.map(diary => {
-    diary.diary_date = new Date(diary.diary_date).valueOf();
-    return diary;
-  });
-  return knex('diaries').insert(fakeDiariesDates);
+  return knex('diaries').insert(fakeDiaries);
 };
