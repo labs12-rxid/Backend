@@ -15,26 +15,86 @@ function find() {
 
 async function findById(id) {
   const rem = await db('rems')
+    .select(
+      'rems.id as id',
+      'rems.rem_date',
+      'rems.med_id',
+      'rems.user_id',
+      'rem_notes',
+      'med_name',
+      'med_active',
+      'med_rx',
+      'med_pharm_phone',
+      'med_type',
+      'med_dose',
+      'med_dose_unit',
+      'med_strength',
+      'med_strength_unit',
+      'med_directions',
+      'med_ingredients',
+      'med_color',
+      'med_shape'
+    )
     .join('meds', 'meds.id', 'rems.med_id')
-    .select('*')
-    .where({ id })
+    .where({ 'rems.id': id })
     .first();
   return rem;
 }
 
 function findBy(user_id) {
   return db('rems')
+    .select(
+      'rems.id as id',
+      'rems.rem_date',
+      'rems.med_id',
+      'rems.user_id',
+      'rem_notes',
+      'med_name',
+      'med_active',
+      'med_rx',
+      'med_pharm_phone',
+      'med_type',
+      'med_dose',
+      'med_dose_unit',
+      'med_strength',
+      'med_strength_unit',
+      'med_directions',
+      'med_ingredients',
+      'med_color',
+      'med_shape'
+    )
     .join('meds', 'meds.id', 'rems.med_id')
-    .select('*')
     .where({ 'rems.user_id': user_id });
 }
 
-async function add(rem) {
-  const newRem = await db('rems')
-    .insert(rem)
-    .returning('*');
-  return newRem['0'];
-  // postgreSQL returns the object inside of an object. This will return the rem object that we want.
+async function add(rems) {
+  const [med_id] = await db('rems')
+    .insert(rems)
+    .returning('med_id');
+  console.log(med_id);
+  return await db('rems')
+    .select(
+      'rems.id as id',
+      'rems.rem_date',
+      'rems.med_id',
+      'rems.user_id',
+      'rem_notes',
+      'med_name',
+      'med_active',
+      'med_rx',
+      'med_pharm_phone',
+      'med_type',
+      'med_dose',
+      'med_dose_unit',
+      'med_strength',
+      'med_strength_unit',
+      'med_directions',
+      'med_ingredients',
+      'med_color',
+      'med_shape'
+    )
+    .join('meds', 'meds.id', 'rems.med_id')
+    .where({ med_id });
 }
 
 async function update(id, updates) {
