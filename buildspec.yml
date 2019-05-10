@@ -13,12 +13,15 @@ phases:
   pre_build:
     commands:
       #- npm run test
+      - npx pm2 start index.js
   build:
     commands:
-      #- npm run build
+      - sleep 10
+      - npx pm2 status
   post_build:
     commands:
       # handles a conflict between npm and yarn, must find more elegant solution
+      - npx pm2 status
       - rm -rf ./node_modules
 artifacts:
   files:
