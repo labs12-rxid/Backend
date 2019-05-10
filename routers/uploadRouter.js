@@ -9,13 +9,14 @@ router.post('/', upload.single('image'), async (req, res) => {
   console.log(req.body);
   console.log(req.file);
 
-  const here = process.env.MY_CRIB;
+  const here = process.env.MY_CRIB || localhost;
+  const science = process.env.DS_SERVER || localhost;
 
   if (!file) {
     res.status(400).json({ message: "No file provided." })
   } else {
     try {
-      const dataMagic = await axios.post(`${}`, {
+      const dataMagic = await axios.post(`${science}/rekog`, {
         "file_locations": [`${here}/api/upload/${file.filename}`]
       });
 
@@ -25,6 +26,7 @@ router.post('/', upload.single('image'), async (req, res) => {
     }
   // }
   }
+});
 
 router.get('/:filename', async (req, res) => {
   const { filename } = req.params;
