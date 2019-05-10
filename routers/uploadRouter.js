@@ -29,7 +29,7 @@ router.post('/', upload.single('image'), async (req, res) => {
 router.get('/:filename', async (req, res) => {
   const { filename } = req.params;
   let fileLocation = `${filepath}/${filename}`;
-  
+
   try {
     res.status(200).sendFile(fileLocation)
   } catch(error) {
