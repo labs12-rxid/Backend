@@ -55,14 +55,14 @@
 
 ## diaries <a name="diariesTABLE"></a>
 
-| Field       | Data Type | Notes                                                               |
-| ----------- | --------- | ------------------------------------------------------------------- |
-| id          | integer   | required, PK, auto-increment                                        |
-| user_id     | integer   | required, FK of users PK, onDelete: cascade, onUpdate: cascade      |
-| med_id      | integer   | required, FK of meds PK, onDelete: cascade, onUpdate: cascade       |
-| diary_date  | date      | optional, default auto-generated, user-adjustable (RESEARCH NEEDED) |
-| diary_emoji | string    | optional/required: 1/2 (code for emoji) (RESEARCH NEEDED)           |
-| diary_text  | string    | optional/required: 2/2, 1024 chars                                  |
+| Field       | Data Type | Notes                                                          |
+| ----------- | --------- | -------------------------------------------------------------- |
+| id          | integer   | required, PK, auto-increment                                   |
+| user_id     | integer   | required, FK of users PK, onDelete: cascade, onUpdate: cascade |
+| med_id      | integer   | required, FK of meds PK, onDelete: cascade, onUpdate: cascade  |
+| diary_date  | string    | required, epoch time, auto-generated                           |
+| diary_emoji | string    | optional/required: 1/2 (code for emoji)                        |
+| diary_text  | string    | optional/required: 2/2, 1024 chars                             |
 
 ## rems <a name="remsTABLE"></a>
 
