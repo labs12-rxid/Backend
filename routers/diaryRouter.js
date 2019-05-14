@@ -29,11 +29,9 @@ diaryRouter.get('/:id', async (req, res) => {
 
 diaryRouter.post('/', async (req, res) => {
   try {
-    console.log('req.body:', req.body);
     const newDiary = await Diary.add(req.body);
     if (newDiary) {
       res.status(201).json(newDiary);
-      console.log('newDiary:', newDiary);
     }
   } catch (error) {
     res

@@ -1,8 +1,8 @@
-const fs = require('fs');
-const faker = require('faker');
+// const fs = require('fs');
+// const faker = require('faker');
 const fakeDiaries = require('../dummyData/fakeDiaries.json')['diaries'];
 
-exports.seed = function(knex, Promise) {
+exports.seed = function(knex) {
   // const fakeDiaries = [];
 
   // for (let i = 1; i < 1000; i++) {

@@ -6,6 +6,7 @@
   "author": "Labs 12 RxID Project",
   "license": "MIT",
   "scripts": {
+    "pretest": "eslint --ignore-path .gitignore .",
     "test": "cross-env DB_ENV=testing jest",
     "start": "node index.js",
     "server": "nodemon index.js"
@@ -31,6 +32,9 @@
   },
   "devDependencies": {
     "cross-env": "^5.2.0",
+    "eslint": "^5.16.0",
+    "eslint-config-prettier": "^4.2.0",
+    "eslint-plugin-jest": "^22.5.1",
     "jest": "^24.7.1",
     "nodemon": "^1.18.11",
     "supertest": "^4.0.2"

@@ -13,7 +13,7 @@ phases:
       - npx yarn install
   pre_build:
     commands:
-      #- npm run test
+      - npm run test
       - npx pm2 start index.js
   build:
     commands:
