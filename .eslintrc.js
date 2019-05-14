@@ -8,7 +8,7 @@ module.exports = {
     "node": true,
     "jest/globals": true
   },
-  "extends": ["eslint:recommended", "plugin:jest/recommended"],
+  "extends": ["eslint:recommended", "plugin:jest/recommended", "prettier"],
   "plugins": ["jest"],
   "rules": {
     "jest/no-disabled-tests": "warn",
