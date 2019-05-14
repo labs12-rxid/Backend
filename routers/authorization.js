@@ -13,7 +13,7 @@ module.exports = (req, res, next) => {
     const options = {
       algorithm: 'RS256'
     };
-    function getKey(header, callback) {
+    const getKey = (header, callback) => {
       client.getSigningKey(header.kid, (err, key) => {
         let signingKey = key.publicKey || key.rsaPublicKey;
         callback(null, signingKey);

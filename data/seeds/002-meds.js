@@ -1,5 +1,5 @@
-const fs = require('fs');
-const faker = require('faker');
+// const fs = require('fs');
+// const faker = require('faker');
 const fakeMeds = require('../dummyData/fakeMeds.json')['meds'];
 
 exports.seed = function(knex) {

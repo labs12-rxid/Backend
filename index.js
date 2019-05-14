@@ -1,4 +1,5 @@
 require('dotenv').config();
+const util = require('util');
 
 const server = require('./api/server.js');
 const port = process.env.PORT || 5000;
@@ -7,5 +8,5 @@ const port = process.env.PORT || 5000;
 // const scheduler = require('./reminders/scheduler.js');
 
 server.listen(port, function() {
-  console.log(`*** Server listening on port ${port}. ***`);
+  util.log(`*** Server listening on port ${port}. ***`);
 });

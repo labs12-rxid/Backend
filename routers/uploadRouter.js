@@ -2,7 +2,7 @@ const upload = require('../api/upload.js')['upload']; // Brings in multer.
 const filepath = require('../api/upload.js')['uploadTo']; // Brings in multer.
 const router = require('express').Router();
 const axios = require('axios');
-const path = require('path');
+// const path = require('path');
 const util = require('util');
 require('dotenv').config(); 
 
@@ -34,7 +34,7 @@ router.post('/', upload.single('image'), async (req, res) => {
 
       res.status(200).json([...data]);
     } catch (error) {
-      console.log(error);
+      util.log(error);
       res.status(500).json({ message: "Internal server error." });
     }
   }
