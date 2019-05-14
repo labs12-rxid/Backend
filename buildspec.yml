@@ -14,7 +14,7 @@ phases:
   pre_build:
     commands:
       - npm run test
-      #- npx pm2 start index.js
+      - npx pm2 start index.js
   build:
     commands:
       - #sleep 10
