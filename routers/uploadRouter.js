@@ -19,7 +19,7 @@ router.post('/', upload.single('image'), async (req, res) => {
       const rekogEndpoint = `${science}/rekog`;
 
       const axiosConfig = {
-        url: ds_endpoint, 
+        url: rekogEndpoint, 
         method: 'post',
         data: {
           "image_locations": imageLocArray
