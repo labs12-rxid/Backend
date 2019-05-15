@@ -1,5 +1,5 @@
-const fs = require('fs');
-const faker = require('faker');
+// const fs = require('fs');
+// const faker = require('faker');
 const fakeUsers = require('../dummyData/fakeUsers.json')['users'];
 
 // const createFakeUser = () => ({
@@ -11,7 +11,7 @@ const fakeUsers = require('../dummyData/fakeUsers.json')['users'];
 //   phone: faker.phone.phoneNumber()
 // });
 
-exports.seed = function(knex, Promise) {
+exports.seed = function(knex) {
   // const fakeUsers = [];
 
   // for (let i = 0; i < 500; i++) {

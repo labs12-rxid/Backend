@@ -1,10 +1,11 @@
 const cron = require('node-cron');
+const util = require('util');
 const moment = require('moment');
 
 const remindersWorker = require('./notificationsWorker.js');
 
 const scheduler = cron.schedule('* * * * *', () => {
-  console.log('Running Send Reminders Worker for ' + moment().format());
+  util.log('Running Send Reminders Worker for ' + moment().format());
   remindersWorker.run();
 });
 
