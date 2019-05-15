@@ -67,17 +67,8 @@ function findBy(user_id) {
     .where({ 'rems.user_id': user_id });
 }
 
-<<<<<<< HEAD
 async function findByIds(med_id, user_id) {
   return db('rems')
-=======
-async function add(rems) {
-  const [med_id] = await db('rems')
-    .insert(rems)
-    .returning('med_id');
-    
-  return await db('rems')
->>>>>>> dcaaba7fb43d0420abe77121617332a3d0b792f6
     .select(
       'rems.id as id',
       'rems.rem_date',
