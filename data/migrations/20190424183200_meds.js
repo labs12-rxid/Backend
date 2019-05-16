@@ -14,6 +14,7 @@ exports.up = function(knex) {
       .boolean('med_active')
       .notNullable()
       .defaultTo(true);
+    table.string('med_add_date');
     table.string('med_rx', 64);
     table.string('med_pharm_phone', 32);
     table.string('med_type', 64);
