@@ -10,7 +10,7 @@ exports.up = function(knex) {
     table.string('first_name', 64);
     table.string('last_name', 64);
     table.string('auth_id', 128).unique();
-    table.string('sort_diary_med').defaultTo('alpha');
+    table.string('sort_diary_meds').defaultTo('alpha');
   });
 };
 
