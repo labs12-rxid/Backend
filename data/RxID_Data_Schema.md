@@ -12,11 +12,7 @@
 | Field           | Data Type | Notes                                            |
 | --------------- | --------- | ------------------------------------------------ |
 | id              | integer   | required, PK, auto-increment                     |
-| username        | string    | required, unique, 64 chars                       |
-| password        | string    | required, 64 chars                               |
 | created_at      | date      | required, auto-generated                         |
-| premium         | boolean   | required, default false (access to full app)     |
-| email           | string    | optional, 64 chars                               |
 | phone           | string    | optional, 32 chars (used for all reminders)      |
 | first_name      | string    | optional, 64 chars                               |
 | last_name       | string    | optional, 64 chars                               |
