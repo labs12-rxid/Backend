@@ -37,13 +37,13 @@ userRouter.get('/:id/meds', async (req, res) => {
   const { id } = req.params;
   try {
     const meds = await Meds.findUsersMeds(id);
-    if (meds.length > 0) {
+    if (meds) {
       res.status(200).json(meds);
-    } else {
-      res.status(200).json({
-        message: 'User with specified ID does not have any medications.'
-      });
-    }
+    } // else {
+    //   res.status(200).json({
+    //     message: 'User with specified ID does not have any medications.'
+    //   });
+    // }
   } catch (error) {
     res
       .status(500)
@@ -55,13 +55,13 @@ userRouter.get('/:id/diaries', async (req, res) => {
   const { id } = req.params;
   try {
     const diaries = await Diary.findBy(id);
-    if (diaries.length > 0) {
+    if (diaries) {
       res.status(200).json(diaries);
-    } else {
-      res
-        .status(200)
-        .json({ message: 'User with specified ID does not have any diaries.' });
-    }
+    } // else {
+    //   res
+    //     .status(200)
+    //     .json({ message: 'User with specified ID does not have any diaries.' });
+    // }
   } catch (error) {
     res.status(500).json({ message: `User diaries request failed ${error}.` });
   }
@@ -71,13 +71,13 @@ userRouter.get('/:id/rems', async (req, res) => {
   const { id } = req.params;
   try {
     const rems = await Rems.findBy(id);
-    if (rems.length > 0) {
+    if (rems) {
       res.status(200).json(rems);
-    } else {
-      res.status(200).json({
-        message: 'User with specified ID does not have any reminders.'
-      });
-    }
+    } // else {
+    //   res.status(200).json({
+    //     message: 'User with specified ID does not have any reminders.'
+    //   });
+    // }
   } catch (error) {
     res
       .status(500)
@@ -121,7 +121,7 @@ userRouter.post(
         if (sendToS3 && updateDatabase) {
           res.status(200).json({ message: 'Successfully uploaded!' });
         } else {
-          res.status(502).json({ message: 'Something went wrong.' })
+          res.status(502).json({ message: 'Something went wrong.' });
         }
       } catch (error) {
         util.log(error);
