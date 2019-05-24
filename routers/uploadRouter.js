@@ -6,7 +6,7 @@ const util = require('util');
 
 router.post('/', upload.single('image'), async (req, res) => {
   const file = req.file;
-  const port = process.env.PORT;
+  const port = process.env.PORT || '5000';
   const here = process.env.MY_HOUSE || `localhost:${port}`;
   const science = process.env.DS_SERVER || 'localhost:8000';
 

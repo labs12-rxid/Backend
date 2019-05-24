@@ -104,7 +104,6 @@ userRouter.post(
 
         const sendToS3 = await useS3
           .putObject({
-            ACL: 'something-invalid',
             Body: buffer,
             Bucket: `${usersBucket}`,
             Key: `users/images/${uniqueFilename}`,
@@ -121,7 +120,7 @@ userRouter.post(
         if (sendToS3 && updateDatabase) {
           res.status(200).json({ message: 'Successfully uploaded!' });
         } else {
-          res.status(502).json({ message: 'Something went wrong.' })
+          res.status(502).json({ message: 'Something went wrong.' });
         }
       } catch (error) {
         util.log(error);
