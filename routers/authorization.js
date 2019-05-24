@@ -18,7 +18,7 @@ module.exports = (req, res, next) => {
         let signingKey = key.publicKey || key.rsaPublicKey;
         callback(null, signingKey);
       });
-    }
+    };
     jwt.verify(token, getKey, options, (error, decoded) => {
       if (error) {
         res.status(401).json({ message: 'Invalid token.' });

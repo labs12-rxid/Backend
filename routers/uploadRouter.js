@@ -1,28 +1,27 @@
 const upload = require('../api/upload.js')['upload']; // Brings in multer.
-const filepath = require('../api/upload.js')['uploadTo']; // Brings in multer.
+const filepath = require('../api/upload.js')['uploadTo'];
 const router = require('express').Router();
 const axios = require('axios');
-// const path = require('path');
 const util = require('util');
-require('dotenv').config(); 
 
 router.post('/', upload.single('image'), async (req, res) => {
   const file = req.file;
-  const here = process.env.MY_CRIB || "localhost";
-  const science = process.env.DS_SERVER || "localhost";
+  const port = process.env.PORT;
+  const here = process.env.MY_HOUSE || `localhost:${port}`;
+  const science = process.env.DS_SERVER || 'localhost:8000';
 
   if (!file) {
-    res.status(400).json({ message: "No file provided." })
+    res.status(400).json({ message: 'No image provided.' });
   } else {
     try {
       const imageLocArray = [`${here}/api/upload/${file.filename}`];
-      const rekogEndpoint = `${science}/rekog`;
+      const rekogEndpoint = `${science}`;
 
       const axiosConfig = {
-        url: rekogEndpoint, 
+        url: rekogEndpoint,
         method: 'post',
         data: {
-          "image_locations": imageLocArray
+          image_locations: imageLocArray
         },
         timeout: 300000
       };
@@ -30,12 +29,10 @@ router.post('/', upload.single('image'), async (req, res) => {
       const dataMagic = await axios(axiosConfig);
       const { data } = dataMagic;
 
-      util.log(data);
-
       res.status(200).json([...data]);
     } catch (error) {
       util.log(error);
-      res.status(500).json({ message: "Internal server error." });
+      res.status(500).json({ message: 'Internal server error.' });
     }
   }
 });
@@ -45,10 +42,13 @@ router.get('/:filename', async (req, res) => {
   let fileLocation = `${filepath}/${filename}`;
 
   try {
-    res.status(200).type('png').sendFile(fileLocation)
-  } catch(error) {
-    res.status(500).json({ message: "Internal server error." })
+    res
+      .status(200)
+      .type('png')
+      .sendFile(fileLocation);
+  } catch (error) {
+    res.status(500).json({ message: 'Internal server error.' });
   }
-})
+});
 
 module.exports = router;
