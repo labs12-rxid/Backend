@@ -7,6 +7,7 @@ const Rems = require('../data/helpers/rems-model');
 
 const uploadBuffer = require('../api/upload.js')['uploadBuffer']; // Uses multer to buffer image uploads
 const uuid = require('uuid/v4');
+const util = require('util');
 
 const S3 = require('aws-sdk/clients/s3');
 const useS3 = new S3({
@@ -88,6 +89,7 @@ userRouter.post(
   '/:id/avatar',
   uploadBuffer.single('image'),
   async (req, res) => {
+    const { id } = req.params;
     const file = req.file;
     const body = req.body;
 
@@ -114,9 +116,15 @@ userRouter.post(
           profile_image_url: uniqueFilename
         });
 
-        res.status(200).json({ message: 'Successfully uploaded!' });
+        util.log(sendToS3, updateDatabase);
+
+        if (sendToS3 && updateDatabase) {
+          res.status(200).json({ message: 'Successfully uploaded!' });
+        } else {
+          res.status(502).json({ message: 'Something went wrong.' })
+        }
       } catch (error) {
-        console.log(error);
+        util.log(error);
         res.status(500).json({ message: 'Internal server error.' });
       }
     }

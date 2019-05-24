@@ -1,12 +1,13 @@
 const upload = require('../api/upload.js')['upload']; // Brings in multer.
-const uploadBuffer = require('../api/upload.js')['uploadBuffer']; // For buffering the S3 uploads instead.
 const filepath = require('../api/upload.js')['uploadTo'];
 const router = require('express').Router();
 const axios = require('axios');
+const util = require('util');
 
 router.post('/', upload.single('image'), async (req, res) => {
   const file = req.file;
-  const here = process.env.MY_HOUSE || `localhost:${PORT}`;
+  const port = process.env.PORT;
+  const here = process.env.MY_HOUSE || `localhost:${port}`;
   const science = process.env.DS_SERVER || 'localhost:8000';
 
   if (!file) {

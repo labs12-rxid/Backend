@@ -8,7 +8,7 @@ exports.up = function(knex) {
   });
 };
 
-exports.down = function(knex, Promise) {
+exports.down = function(knex) {
   return knex.schema.alterTable('users', table => {
     table.dropColumn('profile_image_url');
   });
