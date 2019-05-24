@@ -42,9 +42,17 @@ async function update(id, updates) {
 }
 
 async function remove(id) {
-  const [user] = db('users')
+  const [user] = await db('users')
     .where({ id })
     .del()
     .returning('*');
   return user;
 }
+
+// async function remove(id) {
+//   const [med] = await db('meds')
+//     .where({ id })
+//     .del()
+//     .returning('*');
+//   return med;
+// }
