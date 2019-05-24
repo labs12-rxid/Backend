@@ -71,7 +71,7 @@ async function add(rems) {
   const [med_id] = await db('rems')
     .insert(rems)
     .returning('med_id');
-    
+
   return await db('rems')
     .select(
       'rems.id as id',
