@@ -8,11 +8,11 @@ async function theAbomination(script, ...args) {
     cwd: '/srv/www/flask'
   });
 
-  const venom = giantSnake.stdout.on('data', (chunk) => {
+  const venom = giantSnake.stdout.on('data', chunk => {
     let textChunk = chunk.toString('utf8');
 
     return textChunk;
-  })
+  });
 
   return await getStream(venom);
 }
