@@ -5,6 +5,17 @@ const Meds = require('../data/helpers/meds-model');
 const Diary = require('../data/helpers/diary-model');
 const Rems = require('../data/helpers/rems-model');
 
+const uploadBuffer = require('../api/upload.js')['uploadBuffer']; // Uses multer to buffer image uploads
+const uuid = require('uuid/v4');
+
+const S3 = require('aws-sdk/clients/s3');
+const useS3 = new S3({
+  apiVersion: '2006-03-01',
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  region: process.env.AWS_DEFAULT_REGION
+});
+
 userRouter.get('/:id', async (req, res) => {
   const { id } = req.params;
   try {
@@ -28,7 +39,7 @@ userRouter.get('/:id/meds', async (req, res) => {
     if (meds.length > 0) {
       res.status(200).json(meds);
     } else {
-      res.status(404).json({
+      res.status(200).json({
         message: 'User with specified ID does not have any medications.'
       });
     }
@@ -47,7 +58,7 @@ userRouter.get('/:id/diaries', async (req, res) => {
       res.status(200).json(diaries);
     } else {
       res
-        .status(404)
+        .status(200)
         .json({ message: 'User with specified ID does not have any diaries.' });
     }
   } catch (error) {
@@ -62,7 +73,7 @@ userRouter.get('/:id/rems', async (req, res) => {
     if (rems.length > 0) {
       res.status(200).json(rems);
     } else {
-      res.status(404).json({
+      res.status(200).json({
         message: 'User with specified ID does not have any reminders.'
       });
     }
@@ -72,6 +83,45 @@ userRouter.get('/:id/rems', async (req, res) => {
       .json({ message: `User reminders request failed ${error}.` });
   }
 });
+
+userRouter.post(
+  '/:id/avatar',
+  uploadBuffer.single('image'),
+  async (req, res) => {
+    const file = req.file;
+    const body = req.body;
+
+    if (!file || !body) {
+      res.status(400).json({ message: 'No image provided.' });
+    } else {
+      try {
+        const { buffer, mimetype } = file;
+        const extension = mimetype.slice(6);
+        const uniqueFilename = `avatar-${uuid()}.${extension}`;
+        const usersBucket = process.env.USER_BUCKET;
+
+        const sendToS3 = await useS3
+          .putObject({
+            ACL: 'something-invalid',
+            Body: buffer,
+            Bucket: `${usersBucket}`,
+            Key: `users/images/${uniqueFilename}`,
+            ContentType: mimetype
+          })
+          .promise();
+
+        const updateDatabase = await Users.update(id, {
+          profile_image_url: uniqueFilename
+        });
+
+        res.status(200).json({ message: 'Successfully uploaded!' });
+      } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: 'Internal server error.' });
+      }
+    }
+  }
+);
 
 userRouter.delete('/:id', async (req, res) => {
   const { id } = req.params;
