@@ -104,7 +104,6 @@ userRouter.post(
 
         const sendToS3 = await useS3
           .putObject({
-            ACL: 'something-invalid',
             Body: buffer,
             Bucket: `${usersBucket}`,
             Key: `users/images/${uniqueFilename}`,

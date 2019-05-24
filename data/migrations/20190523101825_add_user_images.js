@@ -3,7 +3,9 @@ exports.up = function(knex) {
     table
       .string('profile_image_url')
       .defaultTo(
-        knex.raw("CONCAT('avatar-default-', floor(random() *6 + 1)::text, '.png')")
+        knex.raw(
+          "CONCAT('avatar-default-', floor(random() *6 + 1)::text, '.png')"
+        )
       );
   });
 };
